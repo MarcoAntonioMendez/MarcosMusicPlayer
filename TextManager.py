@@ -44,21 +44,12 @@ class TextManager:
 		with open("config/preferred_language.mmp") as preferred_language_file:
 			self.preferred_language = str(preferred_language_file.read())
 
-		# Setting texts
-		if self.preferred_language == self.ENGLISH:
-			self.set_presentation_screen_texts_in_english()
-			self.set_tabs_texts_in_english()
-			self.set_exit_screen_texts_in_english()
 
-		elif self.preferred_language == self.SPANISH:
-			self.set_presentation_screen_texts_in_spanish()
-			self.set_tabs_texts_in_spanish()
-			self.set_exit_screen_texts_in_spanish()
+		self.set_texts()
 
-		elif self.preferred_language == self.FRENCH:
-			self.set_presentation_screen_texts_in_french()
-			self.set_tabs_texts_in_french()
-			self.set_exit_screen_texts_in_french()
+
+		# Settings text whose values are the same no matter which language is selected
+		self.set_texts_for_language_selection()
 
 
 	def set_presentation_screen_texts_in_english(self):
@@ -126,14 +117,73 @@ class TextManager:
 
 
 	def set_exit_screen_texts_in_spanish(self):
-		"""Sets values in english for the texts of the ExitScreen
+		"""Sets values in spanish for the texts of the ExitScreen
 		"""
 		self.thank_you_text = "Gracias Por Usar"
 		self.press_enter_to_finish_text = "Presione Enter Para Finalizar 👋..."
 
 
 	def set_exit_screen_texts_in_french(self):
-		"""Sets values in english for the texts of the ExitScreen
+		"""Sets values in french for the texts of the ExitScreen
 		"""
 		self.thank_you_text = "Merci D'avoir Utilisé"
 		self.press_enter_to_finish_text = "Appuyez Sur Entrée Pour Terminer 👋..."
+
+
+	def set_settings_screen_texts_in_english(self):
+		"""Sets values in english for the texts of the SettingsScreen
+		"""
+		self.current_language_selected_text = "Current Language Selected: "
+
+
+	def set_settings_screen_texts_in_spanish(self):
+		"""Sets values in spanish for the texts of the SettingsScreen
+		"""
+		self.current_language_selected_text = "Idioma seleccionado actualmente: "
+
+
+	def set_settings_screen_texts_in_french(self):
+		"""Sets values in french for the texts of the SettingsScreen
+		"""
+		self.current_language_selected_text = "Langue Actuelle Sélectionnée: "
+
+
+	def set_texts_for_language_selection(self):
+		"""Sets values for language selection in the SettingsScreen
+		"""
+		self.english_language_text_for_selection = "English"
+		self.spanish_language_text_for_selection = "Español"
+		self.french_language_text_for_selection = "Français"
+
+
+	def set_texts(self):
+		"""
+		This method sets the texts for the software depending on the selected language
+		"""
+		# Setting texts
+		if self.preferred_language == self.ENGLISH:
+			self.set_presentation_screen_texts_in_english()
+			self.set_tabs_texts_in_english()
+			self.set_settings_screen_texts_in_english()
+			self.set_exit_screen_texts_in_english()
+
+		elif self.preferred_language == self.SPANISH:
+			self.set_presentation_screen_texts_in_spanish()
+			self.set_tabs_texts_in_spanish()
+			self.set_settings_screen_texts_in_spanish()
+			self.set_exit_screen_texts_in_spanish()
+
+		elif self.preferred_language == self.FRENCH:
+			self.set_presentation_screen_texts_in_french()
+			self.set_tabs_texts_in_french()
+			self.set_settings_screen_texts_in_french()
+			self.set_exit_screen_texts_in_french()
+
+
+
+	def update_preferred_language_file(self):
+		"""
+		Updates the file preferred_language.mmp
+		"""
+		with open("config/preferred_language.mmp", "w") as preferred_language_file:
+			preferred_language_file.write(self.preferred_language)

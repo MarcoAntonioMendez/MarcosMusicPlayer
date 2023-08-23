@@ -17,7 +17,7 @@ class TabsManager:
 	def __init__(self, textManager: TextManager):
 		"""Initialize a TabsManager instance.
 		"""
-		self.textManager = TextManager()
+		self.textManager = textManager
 
 		# Setting constants to identify tabs
 		self.NOW_PLAYING_TAB_INDEX = 0

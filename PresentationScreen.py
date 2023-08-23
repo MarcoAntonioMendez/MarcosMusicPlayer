@@ -91,7 +91,6 @@ class PresentationScreen:
 
 		# Main Loop for the whole software
 		while(self.active_screen != self.EXIT_SCREEN_ID):
-			print(self.active_screen)
 
 			if(self.active_screen == self.NOW_PLAYING_SCREEN_ID):
 				self.active_screen = self.nowPlayingScreen.update()
